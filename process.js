@@ -6,6 +6,8 @@ const url = 'mongodb+srv://romeo:romello1@mycluster.ficth39.mongodb.net/?retryWr
 const dbName = 'Stock';
 const collectionName = 'PublicCompanies';
 
+app.set('view engine', 'ejs');
+
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
@@ -40,7 +42,8 @@ app.get('/process', (req, res) => {
             }
 
             console.log('Search Results:', result);
-            res.send('<pre>' + JSON.stringify(result, null, 2) + '</pre>');
+            // Render the results.html template with the search results
+            res.render('results.html', { results: result });
             client.close();
         });
     });

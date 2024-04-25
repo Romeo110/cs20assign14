@@ -2,7 +2,6 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
-const port = 3000;
 const url = 'mongodb+srv://romeo:romello1@mycluster.ficth39.mongodb.net/?retryWrites=true&w=majority&appName=mycluster';
 const dbName = 'Stock';
 const collectionName = 'PublicCompanies';
@@ -47,6 +46,7 @@ app.get('/process', (req, res) => {
     });
 });
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });

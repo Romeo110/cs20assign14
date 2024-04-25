@@ -2,9 +2,9 @@
   "name": "sheltered-mesa-73562",
   "version": "1.0.0",
   "description": "node app ",
-  "main": "hello_app.js",
+  "main": "process.js",
   "scripts": {
-  "start": "process.js"
+  "start": "node process.js"
 },
   "repository": {
   "type": "git",

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Stock Search</h1>
-    <form action="/process" method="GET">
+    <form id="searchForm" method="GET">
         <label for="searchTerm">Search Term:</label>
         <input type="text" id="searchTerm" name="searchTerm">
         <br>
@@ -19,5 +19,44 @@
         <br>
         <button type="submit">Search</button>
     </form>
+
+    <div id="searchResults">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById('searchForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const searchTerm = document.getElementById('searchTerm').value;
+            const searchType = document.querySelector('input[name="searchType"]:checked').value;
+            
+            // Fetch search results from server
+            const response = await fetch(`/process?searchTerm=${searchTerm}&searchType=${searchType}`);
+            const data = await response.json();
+
+            // Display search results
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = ''; // Clear previous results
+
+            // Display header for search results
+            if (data.length > 0) {
+                const header = document.createElement('h2');
+                header.textContent = 'Search Results:';
+                searchResults.appendChild(header);
+            }
+            
+            data.forEach(result => {
+                const item = document.createElement('div');
+                item.innerHTML = `
+                    <strong>Name:</strong> ${result.companyName}<br>
+                    <strong>Ticker:</strong> ${result.stockTicker}<br>
+                    <strong>Price:</strong> ${result.latestPrice}<br><br>
+                `;
+                searchResults.appendChild(item);
+            });
+        });
+    </script>
 </body>
 </html>

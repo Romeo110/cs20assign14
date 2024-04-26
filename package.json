@@ -4,20 +4,19 @@
   "description": "node app ",
   "main": "process.js",
   "scripts": {
-  "start": "node process.js"
-},
+    "start": "node process.js"
+  },
   "repository": {
-  "type": "git",
-  "url": ""
-},
+    "type": "git",
+    "url": ""
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "mongodb": "^6.5.0"
   },
-  "bugs": {
-  "url": ""
-},
-  "homepage": ""
+  "homepage": "",
+  "keywords": []
 }
